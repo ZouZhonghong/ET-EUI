@@ -8,6 +8,8 @@
         public const int ActorLocationSenderChecker = 2;
         public const int ActorMessageSenderChecker = 3;
 
+        
+       
         // 不能超过1000
     }
 }

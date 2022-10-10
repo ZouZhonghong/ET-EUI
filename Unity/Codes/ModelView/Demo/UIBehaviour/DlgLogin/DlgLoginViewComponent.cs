@@ -109,6 +109,24 @@ namespace ET
      		}
      	}
 
+		public ESCommonUI_1 ESCommonUI_1
+     	{
+     		get
+     		{
+     			if (this.uiTransform == null)
+     			{
+     				Log.Error("uiTransform is null.");
+     				return null;
+     			}
+     			if( this.m_escommonui_1 == null )
+     			{
+		    	   Transform subTrans = UIFindHelper.FindDeepChild<Transform>(this.uiTransform.gameObject,"Sprite_BackGround/E_Password/ESCommonUI_1");
+		    	   this.m_escommonui_1 = this.AddChild<ESCommonUI_1,Transform>(subTrans);
+     			}
+     			return this.m_escommonui_1;
+     		}
+     	}
+
 		public void DestroyWidget()
 		{
 			this.m_E_LoginButton = null;
@@ -117,6 +135,8 @@ namespace ET
 			this.m_E_AccountImage = null;
 			this.m_E_PasswordInputField = null;
 			this.m_E_PasswordImage = null;
+			this.m_escommonui_1?.Dispose();
+			this.m_escommonui_1 = null;
 			this.uiTransform = null;
 		}
 
@@ -126,6 +146,7 @@ namespace ET
 		private UnityEngine.UI.Image m_E_AccountImage = null;
 		private UnityEngine.UI.InputField m_E_PasswordInputField = null;
 		private UnityEngine.UI.Image m_E_PasswordImage = null;
+		private ESCommonUI_1 m_escommonui_1 = null;
 		public Transform uiTransform = null;
 	}
 }
