@@ -39,6 +39,7 @@ namespace ET
         {
             var serverInfoList = await DBManagerComponent.Instance.GetZoneDB(self.DomainZone()).Query<ServerInfo>(d => true);
 
+            Log.Debug( "服务器数量："+ serverInfoList.Count.ToString());
             if (serverInfoList == null || serverInfoList.Count <= 0)
             {
                 Log.Error("serverInfo count is zearo");
@@ -46,12 +47,12 @@ namespace ET
                 var serverInfoConfigs = ServerInfoConfigCategory.Instance.GetAll();
 
                 foreach (var info in serverInfoConfigs.Values)
-                {
+                { 
                     ServerInfo newServerInfo = self.AddChildWithId<ServerInfo>(info.Id);
                     newServerInfo.ServerName = info.ServerName;
                     newServerInfo.Status = (int)ServerStaturs.Normal;
                     self.ServerInfos.Add(newServerInfo);
-                    await DBManagerComponent.Instance.GetZoneDB(self.DomainZone()).Save(newServerInfo);
+                    await DBManagerComponent.Instance.GetZoneDB(self.DomainZone()).Save(newServerInfo); 
 
                 }
                 return;

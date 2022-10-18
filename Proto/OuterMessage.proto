@@ -352,3 +352,4 @@ message A2C_DeleteRole // IResponse
 	string Message = 92;
 	int64 DeletedRoleInfoId = 1;
 }
+

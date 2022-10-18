@@ -8,6 +8,7 @@ namespace ET
     {
         protected override async ETTask Run(Session session, C2A_LoginAccount request, A2C_LoginAccount response, Action reply)
         {
+         
             if (session.DomainScene().SceneType != SceneType.Account)
             {
                 Log.Error(($"请求的Scene错误，当前Scene为:{session.DomainScene().SceneType}"));

@@ -2,8 +2,8 @@
 {
 	[FriendClass(typeof(WindowCoreData))]
 	[FriendClass(typeof(UIBaseWindow))]
-	[AUIEvent(WindowID.WindowID_Test)]
-	public  class DlgTestEventHandler : IAUIEventHandler
+	[AUIEvent(WindowID.WindowID_Server)]
+	public  class DlgServerEventHandler : IAUIEventHandler
 	{
 
 		public void OnInitWindowCoreData(UIBaseWindow uiBaseWindow)
@@ -13,23 +13,22 @@
 
 		public void OnInitComponent(UIBaseWindow uiBaseWindow)
 		{
-		  uiBaseWindow.AddComponent<DlgTestViewComponent>(); 
-		  uiBaseWindow.AddComponent<DlgTest>(); 
+		  uiBaseWindow.AddComponent<DlgServerViewComponent>(); 
+		  uiBaseWindow.AddComponent<DlgServer>(); 
 		}
 
 		public void OnRegisterUIEvent(UIBaseWindow uiBaseWindow)
 		{
-		  uiBaseWindow.GetComponent<DlgTest>().RegisterUIEvent(); 
+		  uiBaseWindow.GetComponent<DlgServer>().RegisterUIEvent(); 
 		}
 
 		public void OnShowWindow(UIBaseWindow uiBaseWindow, Entity contextData = null)
 		{
-		  uiBaseWindow.GetComponent<DlgTest>().ShowWindow(contextData); 
+		  uiBaseWindow.GetComponent<DlgServer>().ShowWindow(contextData); 
 		}
 
 		public void OnHideWindow(UIBaseWindow uiBaseWindow)
 		{
-			uiBaseWindow.GetComponent<DlgTest>().HideWindow();
 		}
 
 		public void BeforeUnload(UIBaseWindow uiBaseWindow)

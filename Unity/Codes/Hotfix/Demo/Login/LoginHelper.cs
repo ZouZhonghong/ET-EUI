@@ -33,7 +33,7 @@ namespace ET
             {
                 accountSession?.Dispose();
                 return a2CLoginAccount.Error;
-            }
+            } 
 
             zoneScene.AddComponent<SessionComponent>().Session = accountSession;
             zoneScene.GetComponent<SessionComponent>().Session.AddComponent<PingComponent>();
@@ -46,6 +46,7 @@ namespace ET
 
         public static async ETTask<int> GetServerInfos(Scene zoneScene)
         {
+            Log.Debug("GetServerInfos");
             A2C_GetServerInfos a2CGetServerInfos = null;
 
             try
@@ -66,10 +67,13 @@ namespace ET
             if (a2CGetServerInfos.Error != ErrorCode.ERR_Success)
                 return a2CGetServerInfos.Error;
 
+            Log.Debug("serverinfolist.cont "+a2CGetServerInfos.ServerInfoList.ToString());
             foreach (var serverInfoProto in a2CGetServerInfos.ServerInfoList)
             {
                 ServerInfo serverInfo = zoneScene.GetComponent<ServerInfosComponent>().AddChild<ServerInfo>();
+                
                 serverInfo.FromMessage(serverInfoProto);
+                
                 zoneScene.GetComponent<ServerInfosComponent>().Add(serverInfo);
             }
 
@@ -78,6 +82,41 @@ namespace ET
             return ErrorCode.ERR_Success;
         }
 
+        public static async ETTask<int> GetRoles(Scene zoneScene)
+        {
+            A2C_GetRoles a2CGetRoles = null;
+            try
+            {
+                a2CGetRoles = (A2C_GetRoles)await zoneScene.GetComponent<SessionComponent>().Session.Call(new C2A_GetRoles()
+                {
+                    AccountId = zoneScene.GetComponent<AccountInfoComponent>().AccountId,
+                    Token = zoneScene.GetComponent<AccountInfoComponent>().Token,
+                    ServerId = zoneScene.GetComponent<ServerInfosComponent>().CurrentServerId
+                });
+            }
+            catch (Exception e)
+            {
+               Log.Error(e.ToString());
+               return ErrorCode.Err_NetWorkError;
+            }
+
+            if (a2CGetRoles.Error != ErrorCode.ERR_Success)
+            {
+                Log.Error(a2CGetRoles.Error.ToString());
+                return a2CGetRoles.Error;
+            }
+            zoneScene.GetComponent<RoleInfosComponent>().RoleInfos.Clear();
+
+            foreach (var roleInfoProto in a2CGetRoles.RoleInfo)
+            {
+                RoleInfo roleInfo = zoneScene.GetComponent<RoleInfosComponent>().AddChild<RoleInfo>();
+                roleInfo.FromMessage(roleInfoProto);
+                zoneScene.GetComponent<RoleInfosComponent>().RoleInfos.Add(roleInfo);
+            }
+
+            return ErrorCode.ERR_Success;
+
+        }
         public static async ETTask<int> CreateRole(Scene zoneScene, string name)
         {
 

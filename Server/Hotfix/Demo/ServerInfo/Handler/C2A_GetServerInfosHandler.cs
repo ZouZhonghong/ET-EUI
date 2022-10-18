@@ -8,6 +8,7 @@ namespace ET.Handler
         protected override async ETTask Run(Session session, C2A_GetServerInfos request, A2C_GetServerInfos response, Action reply)
         {
 
+            Log.Debug("C2A_GetServerInfosHandler");
             if (session.DomainScene().SceneType != SceneType.Account)
             {
                 Log.Error($"请求的Scene错误，当前Scene为:{session.DomainScene().SceneType}");
