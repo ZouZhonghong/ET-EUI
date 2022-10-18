@@ -105,7 +105,7 @@ namespace ET
                 Log.Error(a2CGetRoles.Error.ToString());
                 return a2CGetRoles.Error;
             }
-            zoneScene.GetComponent<RoleInfosComponent>().RoleInfos.Clear();
+            zoneScene.GetComponent<RoleInfosComponent>().RoleInfos?.Clear();
 
             foreach (var roleInfoProto in a2CGetRoles.RoleInfo)
             {

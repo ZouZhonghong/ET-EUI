@@ -2,8 +2,8 @@
 {
 	[FriendClass(typeof(WindowCoreData))]
 	[FriendClass(typeof(UIBaseWindow))]
-	[AUIEvent(WindowID.WindowID__Roles)]
-	public  class Dlg_RolesEventHandler : IAUIEventHandler
+	[AUIEvent(WindowID.WindowID_Roles)]
+	public  class DlgRolesEventHandler : IAUIEventHandler
 	{
 
 		public void OnInitWindowCoreData(UIBaseWindow uiBaseWindow)
@@ -13,18 +13,18 @@
 
 		public void OnInitComponent(UIBaseWindow uiBaseWindow)
 		{
-		  uiBaseWindow.AddComponent<Dlg_RolesViewComponent>(); 
-		  uiBaseWindow.AddComponent<Dlg_Roles>(); 
+		  uiBaseWindow.AddComponent<DlgRolesViewComponent>(); 
+		  uiBaseWindow.AddComponent<DlgRoles>(); 
 		}
 
 		public void OnRegisterUIEvent(UIBaseWindow uiBaseWindow)
 		{
-		  uiBaseWindow.GetComponent<Dlg_Roles>().RegisterUIEvent(); 
+		  uiBaseWindow.GetComponent<DlgRoles>().RegisterUIEvent(); 
 		}
 
 		public void OnShowWindow(UIBaseWindow uiBaseWindow, Entity contextData = null)
 		{
-		  uiBaseWindow.GetComponent<Dlg_Roles>().ShowWindow(contextData); 
+		  uiBaseWindow.GetComponent<DlgRoles>().ShowWindow(contextData); 
 		}
 
 		public void OnHideWindow(UIBaseWindow uiBaseWindow)

@@ -11,6 +11,6 @@
        // WindowId_Server,
         WindowID_Test,      //测试界面
        WindowID_Server,     //服务器窗口
-       WindowID__Roles      //创建角色窗口
+       WindowID_Roles      //创建角色窗口
     }
 }

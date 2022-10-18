@@ -73,17 +73,17 @@ namespace ET
                 int errorCode = await LoginHelper.GetRoles(self.ZoneScene());
                 if (errorCode != ErrorCode.ERR_Success)
                 {
-                    Log.Error(errorCode.ToString());
+                    Log.Error("木有处理"+errorCode.ToString());
                     return;
                 }
 
-                self.ZoneScene().GetComponent<UIComponent>().ShowWindow(WindowID.WindowID__Roles);
+                self.ZoneScene().GetComponent<UIComponent>().ShowWindow(WindowID.WindowID_Roles);
                 self.ZoneScene().GetComponent<UIComponent>().CloseWindow(WindowID.WindowID_Server);
             }
             catch (Exception e)
             {
                 Log.Error(e.ToString());
-                throw;
+                return;
             }
         }
 

@@ -5,7 +5,7 @@ namespace ET
 {
 	[ComponentOf(typeof(UIBaseWindow))]
 	[EnableMethod]
-	public  class Dlg_RolesViewComponent : Entity,IAwake,IDestroy 
+	public  class DlgRolesViewComponent : Entity,IAwake,IDestroy 
 	{
 		public UnityEngine.RectTransform EG_BackGroundRectTransform
      	{

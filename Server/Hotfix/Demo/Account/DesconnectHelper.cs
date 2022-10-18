@@ -1,6 +1,6 @@
 namespace ET
 {
-    public static class DesconnectHelper
+    public static class DisconnectHelper
     {
         public static async ETTask Disconnect(this Session self)
         {
